@@ -25,4 +25,3 @@ def pascal_triangle(n):
 
     rmls = [[x for x in sublist if x != 0] for sublist in ls]
     return rmls
-
