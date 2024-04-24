@@ -26,7 +26,5 @@ def minOperations(n):
             ls.append(7)
             return opr(n/7, ls)
         else:
-            ls.append(n)
-            c = sum(ls)
-            return c
+            return 0
     return opr(n, ls)
