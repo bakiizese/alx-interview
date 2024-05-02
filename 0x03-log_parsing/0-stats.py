@@ -6,11 +6,16 @@ import re
 
 pattern1 = r'"GET \/projects\/260 HTTP\/1.1" \d{3} (\d{3})'
 pattern2 = r'"GET \/projects\/260 HTTP\/1.1" (\d{3})'
+chech = r'^(\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}) - \[([^\]]+)\] "GET \/projects\/260 HTTP\/1\.1" (\d{3}) (\d+)$'
+
 count = 0
 ls1 = []
 ls2 = []
 file_size = 0
 for line in sys.stdin:
+    form = re.match(chech, line)
+    if not form:
+        continue
     line2 = line
     match1 = re.search(pattern1, line.strip(), re.DOTALL)
     match2 = re.search(pattern2, line2.strip(), re.DOTALL)
