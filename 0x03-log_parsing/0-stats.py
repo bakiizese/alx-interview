@@ -28,3 +28,4 @@ for line in sys.stdin:
             dic[i] = ls2.count(i)
         for key, val in dic.items():
             print(f'{key}: {val}')
+        file_size = 0
