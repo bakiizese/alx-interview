@@ -4,7 +4,7 @@
 
 def validUTF8(data):
     if not data:
-        return
+        return True
     num_bytes = 0
 
     for byte in data:
