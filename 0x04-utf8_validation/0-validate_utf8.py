@@ -3,10 +3,8 @@
 
 
 def validUTF8(data):
-    if not data:
-        return True
+    ''' validation '''
     num_bytes = 0
-
     for byte in data:
         if num_bytes == 0:
             if (byte >> 7) == 0b0:
