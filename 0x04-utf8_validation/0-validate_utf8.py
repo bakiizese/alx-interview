@@ -5,21 +5,24 @@
 def validUTF8(data):
     ''' validation '''
     num_bytes = 0
-    for byte in data:
+    m_1 = 1 << 7
+    m_2 = 1 << 6
+
+    for bit in data:
+        m_byte = 1 << 7
         if num_bytes == 0:
-            if (byte >> 7) == 0b0:
+            while m_byte & bit:
+                num_bytes += 1
+                m_byte = m_byte >> 1
+            if num_bytes == 0:
                 continue
-            elif (byte >> 5) == 0b110:
-                num_bytes = 1
-            elif (byte >> 4) == 0b1110:
-                num_bytes = 2
-            elif (byte >> 3) == 0b11110:
-                num_bytes = 3
-            else:
+            if num_bytes == 1 or num_bytes > 4:
                 return False
         else:
-            if (byte >> 6) != 0b10:
+            if not (bit & m_1 and not (bit & m_2)):
                 return False
-            num_bytes -= 1
+        num_bytes -= 1
+    if num_bytes == 0:
+        return True
 
-    return num_bytes == 0
+    return False
