@@ -1,22 +1,25 @@
 #!/usr/bin/python3
-'''island'''
-from collections import Counter
-rows = []
-cols = []
 
 
 def island_perimeter(grid):
-    height = len(grid)
-    width = len(grid[0])
-    for i in range(height):
-        for j in range(width):
-            if grid[i][j] == 1:
-                rows.append(i)
-                cols.append(j)
-    freqc = Counter(cols)
-    most_fc = freqc.most_common(1)
-    freqr = Counter(rows)
-    most_fr = freqr.most_common(1)
-    n = most_fc[0][1]
-    m = most_fr[0][1]
-    return n * m + n
+    perimeter = 0
+    rows = len(grid)
+    cols = len(grid[0])
+    
+    for r in range(rows):
+        for c in range(cols):
+            if grid[r][c] == 1:
+                # Add 4 for the current land cell
+                perimeter += 4
+                
+                # Subtract 1 for each neighboring land cell
+                if r > 0 and grid[r - 1][c] == 1:  # Check above
+                    perimeter -= 1
+                if r < rows - 1 and grid[r + 1][c] == 1:  # Check below
+                    perimeter -= 1
+                if c > 0 and grid[r][c - 1] == 1:  # Check left
+                    perimeter -= 1
+                if c < cols - 1 and grid[r][c + 1] == 1:  # Check right
+                    perimeter -= 1
+    
+    return perimeter
