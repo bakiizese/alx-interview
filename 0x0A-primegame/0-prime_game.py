@@ -16,7 +16,7 @@ def isWinner(x, nums):
             maria.append(winner)
     if len(ben) > len(maria):
         return 'Ben'
-    else:
+    elif len(ben) < len(maria):
         return 'Maria'
     return None
 
@@ -37,7 +37,7 @@ def Prime(start, end):
         if count == 2:
             prime.append(i)
         count = 0
- 
+
     if (len(prime) % 2 == 0):
         return 0
     else:
