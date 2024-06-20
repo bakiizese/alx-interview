@@ -16,6 +16,7 @@ def isWinner(x, nums):
         return 'Ben'
     else:
         return 'Meria'
+    return None
 
 
 def Prime(start, end):
