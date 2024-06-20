@@ -4,18 +4,18 @@
 
 def isWinner(x, nums):
     ''' return winner '''
-    meria = []
+    maria = []
     ben = []
     for i in range(x):
         winner = Prime(1, nums[i])
         if winner == 0:
             ben.append(winner)
         else:
-            meria.append(winner)
-    if len(ben) > len(meria):
+            maria.append(winner)
+    if len(ben) > len(maria):
         return 'Ben'
     else:
-        return 'Meria'
+        return 'Maria'
     return None
 
 
