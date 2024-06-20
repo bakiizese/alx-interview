@@ -18,7 +18,8 @@ def isWinner(x, nums):
         return 'Ben'
     elif len(ben) < len(maria):
         return 'Maria'
-    return None
+    else:
+        return None
 
 
 def Prime(start, end):
