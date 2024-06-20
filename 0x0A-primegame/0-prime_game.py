@@ -25,18 +25,18 @@ def Prime(start, end):
     ''' pick out the prime numbers '''
     nums = []
     prime = []
+    count = 0
 
     for i in range(start, end + 1):
         nums.append(i)
 
     for i in nums:
-        count = 0
         for j in nums:
-            if i != j and i % j == 0:
+            if i % j == 0:
                 count += 1
-        if count == 0:
+        if count == 2:
             prime.append(i)
-
+        count = 0
  
     if (len(prime) % 2 == 0):
         return 0
