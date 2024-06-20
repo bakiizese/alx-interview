@@ -8,7 +8,7 @@ def isWinner(x, nums):
         return None
 
     maria, ben = 0, 0
-    
+
     n = max(nums)
     prime = [True for _ in range(1, n + 1, 1)]
     prime[0] = False
@@ -23,10 +23,5 @@ def isWinner(x, nums):
         ben += count % 2 == 0
         maria += count % 2 == 1
     if maria == ben:
-        Pr(True)
+        return None
     return 'Maria' if maria > ben else 'Ben'
-
-
-def Pr(tr):
-    ''' true '''
-    return None
