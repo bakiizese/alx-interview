@@ -1,40 +1,57 @@
 #!/usr/bin/python3
-''' who wins in prime game '''
+"""Module defining isWinner function."""
 
 
 def isWinner(x, nums):
-    ''' return winner '''
-    maria = []
-    ben = []
-    for i in range(x):
-        winner = Prime(1, nums[i])
-        if winner == 0:
-            ben.append(winner)
-        else:
-            maria.append(winner)
-    if len(ben) > len(maria):
-        return 'Ben'
-    else:
-        return 'Maria'
+    """Function to get who has won in prime game"""
+    mariaWinsCount = 0
+    benWinsCount = 0
+
+    for num in nums:
+        roundsSet = list(range(1, num + 1))
+        primesSet = primes_in_range(1, num)
+
+        if not primesSet:
+            benWinsCount += 1
+            continue
+
+        isMariaTurns = True
+
+        while(True):
+            if not primesSet:
+                if isMariaTurns:
+                    benWinsCount += 1
+                else:
+                    mariaWinsCount += 1
+                break
+
+            smallestPrime = primesSet.pop(0)
+            roundsSet.remove(smallestPrime)
+
+            roundsSet = [x for x in roundsSet if x % smallestPrime != 0]
+
+            isMariaTurns = not isMariaTurns
+
+    if mariaWinsCount > benWinsCount:
+        return "Winner: Maria"
+
+    if mariaWinsCount < benWinsCount:
+        return "Winner: Ben"
+
     return None
 
 
-def Prime(start, end):
-    ''' pick out the prime numbers '''
-    nums = []
-    prime = []
-    count = 0
+def is_prime(n):
+    """Returns True if n is prime, else False."""
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True
 
-    for i in range(start, end + 1):
-        nums.append(i)
-    for i in nums:
-        for j in nums:
-            if i % j == 0:
-                count += 1
-        if count == 2:
-            prime.append(i)
-        count = 0
-    if (len(prime) % 2 == 0):
-        return 0
-    else:
-        return 1
+
+def primes_in_range(start, end):
+    """Returns a list of prime numbers between start and end (inclusive)."""
+    primes = [n for n in range(start, end+1) if is_prime(n)]
+    return primes
